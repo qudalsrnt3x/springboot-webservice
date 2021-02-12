@@ -3,9 +3,7 @@ package com.spring.springbootwebservice.web;
 import com.spring.springbootwebservice.service.posts.PostsService;
 import com.spring.springbootwebservice.web.dto.PostsSaveRequestDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
