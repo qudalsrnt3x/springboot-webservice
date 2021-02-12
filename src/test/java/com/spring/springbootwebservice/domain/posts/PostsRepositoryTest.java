@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
@@ -29,7 +30,7 @@ public class PostsRepositoryTest {
 
     @Test
     @DisplayName("게시글저장_불러오기")
-    public void savePosts() {
+    public void savePosts() throws Exception{
         // given
         String title = "테스트 게시글";
         String content = "테스트 본문";
@@ -48,5 +49,28 @@ public class PostsRepositoryTest {
         assertThat(posts.getTitle()).isEqualTo(title);
         assertThat(posts.getContent()).isEqualTo(content);
 
+    }
+
+    @Test
+    @DisplayName("BaseTimeEntity_등록")
+    public void enrollBaseTimeEntity() throws Exception {
+        // given
+        LocalDateTime now = LocalDateTime.of(2021,2,13,0,0,0);
+        postsRepository.save(Posts.builder()
+                .title("title")
+                .content("content")
+                .author("author")
+                .build());
+
+        // when
+        List<Posts> postsList = postsRepository.findAll();
+
+        // then
+        Posts posts = postsList.get(0);
+
+        System.out.println(">>>>>>>>> createDate = "+posts.getCreatedDate()+", modifiedDate = "+posts.getModifiedDate());
+
+        assertThat(posts.getCreatedDate()).isAfter(now);
+        assertThat(posts.getModifiedDate()).isAfter(now);
     }
 }
