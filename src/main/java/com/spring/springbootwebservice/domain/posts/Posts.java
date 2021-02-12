@@ -33,4 +33,9 @@ public class Posts {
     // Setter 메소드가 없음
     // Entity 클래스에서는 절대 Setter 메소드를 만들지 않는다.
     // 대신 해당 필드의 값 변경이 필요하면 명확히 그 목적과 의도를 나타낼 수 있는 메소드 추가
+
+    public void update(String title, String content){
+        this.title = title;
+        this.content = content;
+    }
 }
