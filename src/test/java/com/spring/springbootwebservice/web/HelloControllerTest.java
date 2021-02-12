@@ -1,5 +1,6 @@
 package com.spring.springbootwebservice.web;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class HelloControllerTest {
     private MockMvc mvc;    // Web API 를 테스트할 때 사용, GET, POST 등에 대한 테스트 가능
 
     @Test
-    public void hello가_리턴된다() throws Exception{
+    public void hello가_리턴된다() throws Exception {
         String hello = "hello";
 
         mvc.perform(get("/hello"))
@@ -28,4 +29,13 @@ public class HelloControllerTest {
                 .andExpect(content().string(hello));
     }
 
+    @Test
+    @DisplayName("hi가 리턴된다.")
+    public void returnHi() throws Exception {
+        String hi = "hi";
+
+        mvc.perform(get("/hi"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(hi));
+    }
 }
